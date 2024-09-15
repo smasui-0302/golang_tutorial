@@ -18,6 +18,23 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
+// Hellos は複数の名前に対する挨拶メッセージを含むマップを返します。
+func Hellos(names []string) (map[string]string, error) {
+	// 名前と挨拶メッセージを関連付けるマップを作成します。
+	messages := make(map[string]string)
+	// 名前のスライスをループして、各名前に対する挨拶メッセージを生成します。
+	for _, name := range names {
+		message, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+		// マップにメッセージを追加します。
+		messages[name] = message
+	}
+	return messages, nil
+}
+
+
 // randomFormat はランダムに選択された挨拶メッセージを返します。
 func randomFormat() string {
 	// 挨拶メッセージの配列を定義します。
